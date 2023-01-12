@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  uuid          String         @id @default(uuid())
+  imageUrl      String
+  title         String
+  oldPrice      String
+  price         String
+  orderProducts OrderProduct[]
+}
+
+model Order {
+  uuid           String         @id @default(uuid())
+  date           DateTime       @default(now())
+  number         Int
+  creditCardUuid String
+  products       OrderProduct[]
+  info           OrderInfo[]
+  creditCard     CreditCard?    @relation(fields: [creditCardUuid], references: [uuid])
+}
+
+model OrderProduct {
+  uuid         String   @id @default(uuid())
+  deliveryDate String
+  productUuid  String
+  orderUuid    String
+  isDelivered  Boolean  @default(false)
+  isCanceled   Boolean  @default(false)
+  product      Product? @relation(fields: [productUuid], references: [uuid])
+  Order        Order?   @relation(fields: [orderUuid], references: [uuid])
+}
+
+model OrderInfo {
+  uuid      String          @id @default(uuid())
+  name      String
+  items     OrderInfoItem[]
+  orderUuid String
+  Order     Order?          @relation(fields: [orderUuid], references: [uuid])
+}
+
+model OrderInfoItem {
+  uuid          String     @id @default(uuid())
+  name          String
+  value         String
+  orderInfoUuid String
+  OrderInfo     OrderInfo? @relation(fields: [orderInfoUuid], references: [uuid])
+}
+
+model CreditCard {
+  uuid   String  @id @default(uuid())
+  type   String
+  number String
+  orders Order[]
+}
