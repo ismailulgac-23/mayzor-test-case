@@ -8,7 +8,7 @@ import { AppSizedBox } from "../components/ui";
 const IndexPage = () => {
   return (
     <SafeAreaView>
-      <ScrollView style={{ ...getWindowSizes() }} horizontal={false}>
+      <ScrollView style={{ height: 100 + "%" }} horizontal={false}>
         <View style={styles.container}>
           <Header />
           <View style={styles.inner}>
@@ -28,7 +28,7 @@ export default IndexPage;
 
 const styles = StyleSheet.create({
   container: {
-    ...getWindowSizes(),
+    flex: 1,
     backgroundColor: "#f4f6fb",
   },
   inner: {
