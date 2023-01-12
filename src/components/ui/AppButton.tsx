@@ -9,7 +9,7 @@ import React from "react";
 import { appColors } from "../../constants/app";
 
 type IAppButtonProps = {
-  width?: number | "full";
+  width?: number | string | "full";
   height?: number;
   radius?: number;
   onPress?: () => any;

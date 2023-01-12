@@ -3,8 +3,8 @@ import { SizedBox } from "sizedbox";
 import React from "react";
 
 type IAppSizedBoxProps = {
-  height?: number;
-  width?: number;
+  height?: number | string;
+  width?: number | string;
   children?: React.ReactNode;
 };
 
