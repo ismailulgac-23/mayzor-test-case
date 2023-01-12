@@ -4,6 +4,7 @@ export const appPages = {
 
 export const appColors = {
   purple: "#660099",
+  darkPurple: "#5B0486",
   white: "#ffffff",
   transparent: "transparent",
   orange: "#FF9600",
