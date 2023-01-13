@@ -27,6 +27,7 @@ type IAppTextProps = {
     | "900"
     | "bold"
     | "normal";
+  numberOfLines?: number;
   children?: React.ReactNode;
   onPress?: (() => any) | null;
   style?: StyleProp<TextStyle>;
@@ -39,6 +40,7 @@ const AppText = ({
   size = "subtitle3",
   family = "roboto",
   onPress = null,
+  numberOfLines = undefined,
   style = {},
   children,
 }: IAppTextProps) => {
@@ -52,11 +54,17 @@ const AppText = ({
   if (onPress) {
     return (
       <TouchableOpacity onPress={onPress}>
-        <Text style={appStyles}>{children}</Text>
+        <Text numberOfLines={numberOfLines} style={appStyles}>
+          {children}
+        </Text>
       </TouchableOpacity>
     );
   } else {
-    return <Text style={appStyles}>{children}</Text>;
+    return (
+      <Text numberOfLines={numberOfLines} style={appStyles}>
+        {children}
+      </Text>
+    );
   }
 };
 

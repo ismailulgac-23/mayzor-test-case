@@ -20,6 +20,7 @@ model Order {
   uuid           String         @id @default(uuid())
   date           DateTime       @default(now())
   number         Int
+  note           String         @default("")
   creditCardUuid String
   products       OrderProduct[]
   info           OrderInfo[]
@@ -27,14 +28,19 @@ model Order {
 }
 
 model OrderProduct {
-  uuid         String   @id @default(uuid())
+  uuid         String  @id @default(uuid())
   deliveryDate String
   productUuid  String
   orderUuid    String
-  isDelivered  Boolean  @default(false)
-  isCanceled   Boolean  @default(false)
-  product      Product? @relation(fields: [productUuid], references: [uuid])
-  Order        Order?   @relation(fields: [orderUuid], references: [uuid])
+  receiverName String?
+  isDelivered  Boolean @default(false)
+  isCancelled  Boolean @default(false)
+
+  isCancelledDate DateTime?
+  isDeliveredDate DateTime?
+
+  product Product? @relation(fields: [productUuid], references: [uuid])
+  order   Order?   @relation(fields: [orderUuid], references: [uuid])
 }
 
 model OrderInfo {
@@ -42,7 +48,7 @@ model OrderInfo {
   name      String
   items     OrderInfoItem[]
   orderUuid String
-  Order     Order?          @relation(fields: [orderUuid], references: [uuid])
+  order     Order?          @relation(fields: [orderUuid], references: [uuid])
 }
 
 model OrderInfoItem {
@@ -50,7 +56,7 @@ model OrderInfoItem {
   name          String
   value         String
   orderInfoUuid String
-  OrderInfo     OrderInfo? @relation(fields: [orderInfoUuid], references: [uuid])
+  orderInfo     OrderInfo? @relation(fields: [orderInfoUuid], references: [uuid])
 }
 
 model CreditCard {

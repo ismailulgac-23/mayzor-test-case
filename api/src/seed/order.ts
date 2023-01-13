@@ -11,9 +11,10 @@ const cb = async () => {
       products: {
         create: [
           {
+            receiverName: "Nurcan Gerçek",
             deliveryDate: "11 Kasım",
             isCanceled: false,
-            isDelivered: false,
+            isDelivered: true,
             productUuid: productUuids.one,
           },
           {

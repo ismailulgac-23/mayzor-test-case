@@ -12,6 +12,7 @@ CREATE TABLE "Order" (
     "uuid" TEXT NOT NULL PRIMARY KEY,
     "date" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "number" INTEGER NOT NULL,
+    "note" TEXT NOT NULL DEFAULT '',
     "creditCardUuid" TEXT NOT NULL,
     CONSTRAINT "Order_creditCardUuid_fkey" FOREIGN KEY ("creditCardUuid") REFERENCES "CreditCard" ("uuid") ON DELETE RESTRICT ON UPDATE CASCADE
 );
@@ -22,6 +23,7 @@ CREATE TABLE "OrderProduct" (
     "deliveryDate" TEXT NOT NULL,
     "productUuid" TEXT NOT NULL,
     "orderUuid" TEXT NOT NULL,
+    "receiverName" TEXT NOT NULL,
     "isDelivered" BOOLEAN NOT NULL DEFAULT false,
     "isCanceled" BOOLEAN NOT NULL DEFAULT false,
     CONSTRAINT "OrderProduct_productUuid_fkey" FOREIGN KEY ("productUuid") REFERENCES "Product" ("uuid") ON DELETE RESTRICT ON UPDATE CASCADE,

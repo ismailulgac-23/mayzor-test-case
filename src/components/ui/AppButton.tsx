@@ -23,8 +23,8 @@ type IAppButtonProps = {
 
 const AppButton = ({
   radius = 0,
-  width,
-  height,
+  width = undefined,
+  height = undefined,
   onPress,
   style,
   center = true,
