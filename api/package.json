@@ -4,12 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prisma:migration": "npx prisma migrate dev --name initial",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npm run prisma:migration && npm run prisma:generate",
-    "prisma:reset": "npx run prisma migrate reset",
+    "prisma:migration": "yarn prisma migrate dev --name initial",
+    "prisma:generate": "yarn prisma generate",
+    "prisma:migrate": "yarn prisma:migration && yarn prisma:generate",
+    "prisma:reset": "yarn prisma migrate reset",
     "start:dev": "nodemon ./main.ts",
-    "seed:init": "npm run prisma:reset && ts-node ./src/seed/index.ts"
+    "seed:init": "yarn prisma:reset && ts-node ./src/seed/index.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.15",
